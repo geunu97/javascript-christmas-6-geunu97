@@ -25,6 +25,8 @@ class App {
 
     const dateManager = new DiscountDateManager(Number(inputDate)); 
     const discountManager = new DiscountManager(dateManager);
+
+    const dessertMenuCount = orders.getMenuItemCount(DESSERT);          
   }
 
   totalOrderPriceResult(orders) {

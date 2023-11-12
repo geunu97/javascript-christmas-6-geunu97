@@ -21,6 +21,12 @@ class Orders {
       (acc, order) => acc + order.getTotalPrice(),0);
     return totalOrderPrice;
   }
+
+  getMenuItemCount(menuType) {
+    const itemCount = this.#items.reduce(
+      (acc, order) => acc + order.getCountIncludedMenuType(menuType),0 );
+    return itemCount;
+  }
 }
 
 export default Orders;
