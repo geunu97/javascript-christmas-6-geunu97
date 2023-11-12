@@ -22,7 +22,7 @@ class App {
     const gift = this.calculateGift(totalOrderPrice);
     const discountPrice = this.calculateDisCountPrice(orders, dateManager)
     const totalDiscountDetails = { ...discountPrice, giftPrice: GIFT[gift] }
-    const totalDiscountPrice =  Calculator.sumObjectValues(totalDiscountDetails)    
+    const totalDiscountPrice = this.hasEventQualification(totalOrderPrice) ? Calculator.sumObjectValues(totalDiscountDetails) : 0;
 
     this.printDiscountDetails(totalDiscountPrice, totalDiscountDetails);
     OutputView.printTotalBenefitPriceTitle();
@@ -126,6 +126,10 @@ class App {
     const badge = badgeManager.getBadge();
     OutputView.printBadgeTitle();
     OutputView.printBadge(badge);
+  }
+
+  hasEventQualification(totalOrderPrice){
+    return totalOrderPrice >= 10000;
   }
 }
 
