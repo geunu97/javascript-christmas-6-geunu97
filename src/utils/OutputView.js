@@ -37,6 +37,11 @@ const OutputView = {
     Console.print(`${event}: ${-discountPrice}원`);    
   },
 
+  printTotalBenefitPrice(price) {
+    Console.print("\n<총혜택 금액>");
+    Console.print(`${-price}원`);    
+  },
+
   printNothing(){
     Console.print("없음");
   }

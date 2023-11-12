@@ -4,6 +4,7 @@ import Orders from "./Orders.js";
 import GiftManager from "./GiftManager.js";
 import DiscountDateManager from "./DiscountDateManager.js";
 import DiscountManager from "./DiscountManager.js";
+import { DESSERT, MAIN } from "./constant/menu.js";
 
 class App {
   constructor() {
@@ -27,6 +28,8 @@ class App {
     const totalBenefitDetailResult = this.totalBenefitDetailResult(orders, giftDetails, dateManager);
     const totalDiscount = totalBenefitDetailResult.totalDiscount;
     this.printDiscountDetails(totalDiscount, totalBenefitDetailResult.totalDiscountDetails);
+
+    OutputView.printTotalBenefitPrice(totalDiscount);
   }
 
   totalOrderPriceResult(orders) {
