@@ -26,7 +26,7 @@ class App {
 
     this.printDiscountDetails(totalDiscountPrice, totalDiscountDetails);
     OutputView.printTotalBenefitPriceTitle();
-    OutputView.printTotalBenefitPrice(-totalDiscountPrice);
+    OutputView.printTotalBenefitPrice(totalDiscountPrice);
     this.printDiscountedPrice(totalOrderPrice, totalDiscountPrice, GIFT[gift]);
     this.printDecemberBadge(totalDiscountPrice);
   }
@@ -99,19 +99,19 @@ class App {
 
   printDiscountDetailsLoop(totalDiscountDetails) {
     if (totalDiscountDetails.christmasDiscountPrice) {
-      OutputView.printChristmasDiscountPrice(-totalDiscountDetails.christmasDiscountPrice);
+      OutputView.printChristmasDiscountPrice(totalDiscountDetails.christmasDiscountPrice);
     }
     if (totalDiscountDetails.weekdayDiscountPrice) {
-      OutputView.printWeekdayDiscountPrice(-totalDiscountDetails.weekdayDiscountPrice);
+      OutputView.printWeekdayDiscountPrice(totalDiscountDetails.weekdayDiscountPrice);
     }
     if (totalDiscountDetails.weekendDiscountPrice) {
-      OutputView.printWeekendDiscountPrice(-totalDiscountDetails.weekendDiscountPrice);
+      OutputView.printWeekendDiscountPrice(totalDiscountDetails.weekendDiscountPrice);
     }
     if (totalDiscountDetails.specialDayDiscountPrice) {
-      OutputView.printSpecialDiscountPrice(-totalDiscountDetails.specialDayDiscountPrice);
+      OutputView.printSpecialDiscountPrice(totalDiscountDetails.specialDayDiscountPrice);
     }
     if (totalDiscountDetails.giftPrice) {
-      OutputView.printGiftDiscountPrice(-totalDiscountDetails.giftPrice);
+      OutputView.printGiftDiscountPrice(totalDiscountDetails.giftPrice);
     }
   }
 

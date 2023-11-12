@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import Formatter from "../utils/Formatter.js";
 
 const OutputView = {
   printEventTitle() {
@@ -22,7 +23,7 @@ const OutputView = {
   },
 
   printTotalOrderPrice(price) {    
-    Console.print(`${price}원`);    
+    Console.print(`${Formatter.splitThousands(price)}원`);    
   },
 
   printBenefitTitle() {
@@ -38,23 +39,23 @@ const OutputView = {
   },  
 
   printChristmasDiscountPrice(price) {    
-    Console.print(`크리스마스 디데이 할인: ${price}원`);    
+    Console.print(`크리스마스 디데이 할인: ${Formatter.splitThousands(-price)}원`);    
   },
 
   printWeekdayDiscountPrice(price) {    
-    Console.print(`평일 할인: ${price}원`);    
+    Console.print(`평일 할인: ${Formatter.splitThousands(-price)}원`);    
   },
 
   printWeekendDiscountPrice(price) {    
-    Console.print(`주말 할인: ${price}원`);    
+    Console.print(`주말 할인: ${Formatter.splitThousands(-price)}원`);    
   },
 
   printSpecialDiscountPrice(price) {    
-    Console.print(`특별 할인: ${price}원`);    
+    Console.print(`특별 할인: ${Formatter.splitThousands(-price)}원`);    
   },
 
   printGiftDiscountPrice(price) {    
-    Console.print(`증정 이벤트': ${price}원`);    
+    Console.print(`증정 이벤트': ${Formatter.splitThousands(-price)}원`);    
   },
 
   printTotalBenefitPriceTitle() {
@@ -62,7 +63,7 @@ const OutputView = {
   },
 
   printTotalBenefitPrice(price) {    
-    Console.print(`${price}원`);    
+    Console.print(`${Formatter.splitThousands(-price)}원`);    
   },
 
   printDiscountedPriceTitle() {
@@ -70,7 +71,7 @@ const OutputView = {
   },
 
   printDiscountedPrice(price) {    
-    Console.print(`${price}원`);    
+    Console.print(`${Formatter.splitThousands(price)}원`);    
   },
 
   printBadgeTitle() {

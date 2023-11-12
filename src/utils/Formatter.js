@@ -10,6 +10,13 @@ class Formatter {
   static convertToNumber(value) {
     return Number(value);
   }
+
+  static splitThousands(value) {    
+    if (value) {      
+      return value.toLocaleString();
+    }    
+    return 0;
+  }
 }
 
 export default Formatter;
