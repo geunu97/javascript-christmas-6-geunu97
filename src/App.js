@@ -1,10 +1,11 @@
+import { DESSERT, MAIN } from "./constant/menu.js";
 import InputView from "./utils/InputView.js";
 import OutputView from "./utils/OutputView.js";
 import Orders from "./Orders.js";
 import GiftManager from "./GiftManager.js";
 import DiscountDateManager from "./DiscountDateManager.js";
 import DiscountManager from "./DiscountManager.js";
-import { DESSERT, MAIN } from "./constant/menu.js";
+import BadgeManager from "./BadgeManager.js";
 
 class App {
   constructor() {
@@ -32,6 +33,8 @@ class App {
     OutputView.printTotalBenefitPrice(totalDiscount);
 
     this.DiscountedPriceResult(totalOrderPrice, totalDiscount, giftDetails)
+
+    this.DecemberBadgeResult(totalDiscount)
   }
 
   totalOrderPriceResult(orders) {
@@ -59,6 +62,17 @@ class App {
     return {totalDiscount, totalDiscountDetails} ;
   }
 
+  DiscountedPriceResult(totalOrderPrice, totalDiscount, giftDetails){
+    const discountedPrice = totalOrderPrice - totalDiscount + giftDetails['증정 이벤트'];    
+    OutputView.printDiscountedPrice(discountedPrice);
+  }
+
+  DecemberBadgeResult(totalDiscount) {
+    const badgeManager = new BadgeManager(totalDiscount);
+    const badge = badgeManager.getBadge();
+    OutputView.printBadge(badge);
+  }
+
   calculateTotalDiscount(discountDetails) {
     return Object.values(discountDetails).reduce((sum, discount) => sum + discount, 0);
   }
@@ -75,12 +89,7 @@ class App {
         OutputView.printDiscountPrice(discountPrice, event);
       }
     });    
-  }
-
-  DiscountedPriceResult(totalOrderPrice, totalDiscount, giftDetails){
-    const discountedPrice = totalOrderPrice - totalDiscount + giftDetails['증정 이벤트'];    
-    OutputView.printDiscountedPrice(discountedPrice);
-  }
+  }  
 }
 
 export default App;

@@ -47,6 +47,11 @@ const OutputView = {
     Console.print(`${price}`);    
   },
 
+  printBadge(badge) {
+    Console.print("\n<12월 이벤트 배지>");
+    Console.print(`${badge}`);
+  },
+
   printNothing(){
     Console.print("없음");
   }
