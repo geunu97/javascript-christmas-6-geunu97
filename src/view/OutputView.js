@@ -6,9 +6,7 @@ const OutputView = {
   },
 
   printPreviewEventTitle(date) {
-    Console.print(
-      `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`
-    );
+    Console.print(`12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`);
   },
 
   printMenuTitle() {
@@ -19,13 +17,19 @@ const OutputView = {
     Console.print(`${menu} ${count}개`);    
   },
 
-  printTotalOrderPrice(totalOrderPrice) {
-    Console.print("\n<할인 전 총주문 금액>");
+  printTotalOrderPriceTitle() {
+    Console.print("\n<할인 전 총주문 금액>");    
+  },
+
+  printTotalOrderPrice(totalOrderPrice) {    
     Console.print(`${totalOrderPrice}원`);    
   },
 
-  printBenefit(gift) {
-    Console.print("\n<증정 메뉴>");
+  printBenefitTitle() {
+    Console.print("\n<증정 메뉴>");    
+  },
+
+  printBenefit(gift) {    
     Console.print(`${gift}`);
   },
 
@@ -37,18 +41,27 @@ const OutputView = {
     Console.print(`${event}: ${-discountPrice}원`);    
   },
 
-  printTotalBenefitPrice(price) {
-    Console.print("\n<총혜택 금액>");
+  printTotalBenefitPriceTitle() {
+    Console.print("\n<총혜택 금액>");    
+  },
+
+  printTotalBenefitPrice(price) {    
     Console.print(`${-price}원`);    
   },
 
-  printDiscountedPrice(price) {
-    Console.print("\n<할인 후 예상 결제 금액>");
+  printDiscountedPriceTitle() {
+    Console.print("\n<할인 후 예상 결제 금액>");    
+  },
+
+  printDiscountedPrice(price) {    
     Console.print(`${price}`);    
   },
 
-  printBadge(badge) {
-    Console.print("\n<12월 이벤트 배지>");
+  printBadgeTitle() {
+    Console.print("\n<12월 이벤트 배지>");    
+  },
+
+  printBadge(badge) {    
     Console.print(`${badge}`);
   },
 

@@ -23,6 +23,7 @@ class App {
     const totalDiscount =  Calculator.sumObjectValues(totalDiscountDetails)    
 
     this.printDiscountDetails(totalDiscount, totalDiscountDetails);
+    OutputView.printTotalBenefitPriceTitle();
     OutputView.printTotalBenefitPrice(totalDiscount);
     this.printDiscountedPrice(totalOrderPrice, totalDiscount, giftDetails);
     this.printDecemberBadge(totalDiscount);
@@ -53,6 +54,7 @@ class App {
 
   calculateTotalOrderPrice(orders) {
     const totalOrderPrice = orders.calculateTotalOrderPrice();
+    OutputView.printTotalOrderPriceTitle();
     OutputView.printTotalOrderPrice(totalOrderPrice);
     return totalOrderPrice;
   }
@@ -60,6 +62,7 @@ class App {
   calculateGiftDetails(totalOrderPrice) {
     const giftManager = new GiftManager(totalOrderPrice);
     const gift = giftManager.getGift();
+    OutputView.printBenefitTitle();
     OutputView.printBenefit(gift);
     return giftManager.getGiftDetails();
   }
@@ -93,12 +96,14 @@ class App {
 
   printDiscountedPrice(totalOrderPrice, totalDiscount, giftDetails) {
     const discountedPrice = totalOrderPrice - totalDiscount + giftDetails['증정 이벤트'];
+    OutputView.printDiscountedPriceTitle();
     OutputView.printDiscountedPrice(discountedPrice);
   }
 
   printDecemberBadge(totalDiscount) {
     const badgeManager = new BadgeManager(totalDiscount);
     const badge = badgeManager.getBadge();
+    OutputView.printBadgeTitle();
     OutputView.printBadge(badge);
   }
 }
