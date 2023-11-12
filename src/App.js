@@ -1,4 +1,5 @@
 import { DESSERT, MAIN } from "./constant/menu.js";
+import { Console } from "@woowacourse/mission-utils";
 import InputView from "./utils/InputView.js";
 import OutputView from "./utils/OutputView.js";
 import Orders from "./Orders.js";
@@ -13,7 +14,7 @@ class App {
   }
 
   async run() {
-    const inputDate = await InputView.readDate();    
+    const {dateManager, inputDate} = await this.createDateManager(); 
     const inputMenu = await InputView.readMenu();
 
     OutputView.printPreviewEventTitle(inputDate);  
@@ -24,8 +25,7 @@ class App {
     const totalOrderPrice = this.totalOrderPriceResult(orders);
 
     const giftDetails  = this.giftResult(totalOrderPrice)
-
-    const dateManager = new DiscountDateManager(Number(inputDate));
+    
     const totalBenefitDetailResult = this.totalBenefitDetailResult(orders, giftDetails, dateManager);
     const totalDiscount = this.hasEventQualification(totalOrderPrice) ? totalBenefitDetailResult.totalDiscount : 0;
     this.printDiscountDetails(totalDiscount, totalBenefitDetailResult.totalDiscountDetails);
@@ -35,6 +35,17 @@ class App {
     this.DiscountedPriceResult(totalOrderPrice, totalDiscount, giftDetails)
 
     this.DecemberBadgeResult(totalDiscount)
+  }
+
+  async createDateManager() {
+    try {
+      const inputDate = await InputView.readDate();
+      const dateManager = new DiscountDateManager(Number(inputDate));       
+      return {dateManager, inputDate};
+    } catch(error) {
+      Console.print(error.message);
+      return await this.createDateManager();
+    }
   }
 
   totalOrderPriceResult(orders) {
