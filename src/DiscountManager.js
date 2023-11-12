@@ -18,6 +18,13 @@
     }
     return 0;
   }
+
+  calculateWeekendDiscount(mainMenuCount) {
+    if (this.#dateManager.isWeekendEvent()) {
+      return mainMenuCount * 2023;
+    }
+    return 0;
+  }
 }
 
 export default DiscountManager;
