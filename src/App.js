@@ -2,6 +2,8 @@ import InputView from "./utils/InputView.js";
 import OutputView from "./utils/OutputView.js";
 import Orders from "./Orders.js";
 import GiftManager from "./GiftManager.js";
+import DiscountDateManager from "./DiscountDateManager.js";
+import DiscountManager from "./DiscountManager.js";
 
 class App {
   constructor() {
@@ -20,6 +22,9 @@ class App {
     const totalOrderPrice = this.totalOrderPriceResult(orders);
 
     const giftDetails  = this.giftResult(totalOrderPrice)
+
+    const dateManager = new DiscountDateManager(Number(inputDate)); 
+    const discountManager = new DiscountManager(dateManager);
   }
 
   totalOrderPriceResult(orders) {
