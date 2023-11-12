@@ -14,26 +14,22 @@ class App {
   }
 
   async run() {
-    const {dateManager, inputDate} = await this.createDateManager(); 
-    const inputMenu = await InputView.readMenu();
-
-    OutputView.printPreviewEventTitle(inputDate);  
-    OutputView.printMenuTitle(); 
-
-    const orders = new Orders(inputMenu.split(','));
-
+    const {dateManager, inputDate} = await this.createDateManager()    
+    
+    const orders = await this.createOrders(inputDate);   
+        
     const totalOrderPrice = this.totalOrderPriceResult(orders);
-
+    
     const giftDetails  = this.giftResult(totalOrderPrice)
     
     const totalBenefitDetailResult = this.totalBenefitDetailResult(orders, giftDetails, dateManager);
     const totalDiscount = this.hasEventQualification(totalOrderPrice) ? totalBenefitDetailResult.totalDiscount : 0;
     this.printDiscountDetails(totalDiscount, totalBenefitDetailResult.totalDiscountDetails);
-
+    
     OutputView.printTotalBenefitPrice(totalDiscount);
-
+    
     this.DiscountedPriceResult(totalOrderPrice, totalDiscount, giftDetails)
-
+    
     this.DecemberBadgeResult(totalDiscount)
   }
 
@@ -47,6 +43,19 @@ class App {
       return await this.createDateManager();
     }
   }
+
+  async createOrders(inputDate) {
+    try {
+      const inputMenu = await InputView.readMenu();    
+      OutputView.printPreviewEventTitle(inputDate);  
+      OutputView.printMenuTitle();      
+      const orders = new Orders(inputMenu.split(','));      
+      return orders;
+    } catch(error) {
+      Console.print(error.message);
+      return await this.createOrders(inputDate);
+    }
+  }  
 
   totalOrderPriceResult(orders) {
     const totalOrderPrice = orders.calculateTotalOrderPrice();
@@ -95,12 +104,12 @@ class App {
       return;
     }
 
-    Object.entries(totalDiscountDetails).forEach(([event, discountPrice]) => { 
-      if (discountPrice) {                           
+    Object.entries(totalDiscountDetails).forEach(([event, discountPrice]) => {                            
+      if (discountPrice) {
         OutputView.printDiscountPrice(discountPrice, event);
-      }
+      }      
     });    
-  }  
+  }
 
   hasEventQualification(totalOrderPrice){
     return totalOrderPrice >= 10000;

@@ -1,10 +1,22 @@
 import Order from "./Order.js";
+import OrderValidator from "./validator/OrderValidator.js";
 
 class Orders {
   #items;
 
-  constructor(orderItems) {    
+  constructor(orderItems) {
+    this.#validate(orderItems);
     this.#items = this.#createOrders(orderItems);
+  }
+
+  #validate(orderItems) {
+    OrderValidator.validateBlankOrders(orderItems);
+    OrderValidator.validateBlankOrder(orderItems);
+    OrderValidator.validateDuplicateMenu(orderItems);
+    OrderValidator.validateNotExistMenu(orderItems);
+    OrderValidator.validateOnlyDrinkMenu(orderItems);
+    OrderValidator.validateCountType(orderItems);
+    OrderValidator.validateMaxCount(orderItems);
   }
 
   #createOrders(orderItems) {
