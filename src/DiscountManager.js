@@ -11,6 +11,13 @@
     }
     return 0;
   }
+
+  calculateWeekdayDiscount(dessertMenuCount) {
+    if (this.#dateManager.isWeekdayEvent()) {
+      return dessertMenuCount * 2023;
+    }
+    return 0;
+  }
 }
 
 export default DiscountManager;
