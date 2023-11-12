@@ -23,6 +23,23 @@ const OutputView = {
     Console.print("\n<할인 전 총주문 금액>");
     Console.print(`${totalOrderPrice}원`);    
   },
+
+  printBenefit(gift) {
+    Console.print("\n<증정 메뉴>");
+    Console.print(`${gift}`);
+  },
+
+  printDiscountTitle() {
+    Console.print("\n<혜택 내역>");
+  },
+
+  printDiscountPrice(discountPrice, event) {    
+    Console.print(`${event}: ${-discountPrice}원`);    
+  },
+
+  printNothing(){
+    Console.print("없음");
+  }
 };
 
 export default OutputView;
