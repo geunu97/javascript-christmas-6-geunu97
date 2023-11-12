@@ -10,23 +10,19 @@ class Orders {
     this.#items = this.#createOrders(orderItems);
   }
 
-  #validate(orderItems) {
-    OrderValidator.validateBlankOrders(orderItems);
-    OrderValidator.validateBlankOrder(orderItems);
-    OrderValidator.validateDuplicateMenu(orderItems);
-    OrderValidator.validateNotExistMenu(orderItems);
-    OrderValidator.validateOnlyDrinkMenu(orderItems);
-    OrderValidator.validateCountType(orderItems);
-    OrderValidator.validateMaxCount(orderItems);
+  #validate(orders) {    
+    OrderValidator.validateDuplicateMenu(orders);
+    OrderValidator.validateOnlyDrinkMenu(orders);
+    OrderValidator.validateMaxCount(orders);
   }
 
-  #createOrders(orderItems) {
-    return orderItems.map(order => this.#createOrder(order))    
+  #createOrders(orders) {
+    return orders.map(order => this.#createOrder(order))    
   }
 
   #createOrder(order) {
-    const [menu, count] = Formatter.splitDash(order);    
-    return new Order(menu, Formatter.convertToNumber(count));       
+    const splittedOrder = Formatter.splitDash(order);
+    return new Order(splittedOrder);             
   }
 
   calculateTotalOrderPrice() {

@@ -14,7 +14,7 @@ const OutputView = {
     Console.print("\n<주문 메뉴>");
   },
 
-  printMenu(menu, count) {
+  printMenu([menu, count]) {
     Console.print(`${menu} ${count}개`);    
   },
 

@@ -34,7 +34,7 @@ class App {
   async createDateManager() {
     try {
       const inputDate = await InputView.readDate();
-      const dateManager = new DiscountDateManager(Formatter.convertToNumber(inputDate));
+      const dateManager = new DiscountDateManager(inputDate);
       return { dateManager, inputDate };
     } catch (error) {
       OutputView.printErrorMessage(error)      
