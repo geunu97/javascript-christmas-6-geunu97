@@ -1,5 +1,5 @@
-import { DESSERT, MAIN } from "./constant/menu.js";
-import GIFT from "./constant/gift.js";
+import { DESSERT, MAIN } from "./constant/Menu.js";
+import { GIFT_PRICE } from "./constant/Gift.js";
 import InputView from "./view/InputView.js";
 import OutputView from "./view/OutputView.js";
 import Orders from "./Orders.js";
@@ -9,7 +9,7 @@ import DiscountManager from "./DiscountManager.js";
 import BadgeManager from "./BadgeManager.js";
 import Calculator from "./utils/Calculator.js";
 import Formatter from "./utils/Formatter.js";
-    
+
 class App {
   constructor() {
     OutputView.printEventTitle();
@@ -20,14 +20,14 @@ class App {
     const orders = await this.createOrders(inputDate);
     const totalOrderPrice = this.calculateTotalOrderPrice(orders);
     const gift = this.calculateGift(totalOrderPrice);
-    const discountPrice = this.calculateDisCountPrice(orders, dateManager)
-    const totalDiscountDetails = { ...discountPrice, giftPrice: GIFT[gift] }
+    const discountPrice = this.calculateDisCountPrice(orders, dateManager);
+    const totalDiscountDetails = { ...discountPrice, giftPrice: GIFT_PRICE[gift] };
     const totalDiscountPrice = this.hasEventQualification(totalOrderPrice) ? Calculator.sumObjectValues(totalDiscountDetails) : 0;
 
     this.printDiscountDetails(totalDiscountPrice, totalDiscountDetails);
     OutputView.printTotalBenefitPriceTitle();
     OutputView.printTotalBenefitPrice(totalDiscountPrice);
-    this.printDiscountedPrice(totalOrderPrice, totalDiscountPrice, GIFT[gift]);
+    this.printDiscountedPrice(totalOrderPrice, totalDiscountPrice, GIFT_PRICE[gift]);
     this.printDecemberBadge(totalDiscountPrice);
   }
 
@@ -37,7 +37,7 @@ class App {
       const dateManager = new DiscountDateManager(inputDate);
       return { dateManager, inputDate };
     } catch (error) {
-      OutputView.printErrorMessage(error)      
+      OutputView.printErrorMessage(error);
       return await this.createDateManager();
     }
   }
@@ -49,7 +49,7 @@ class App {
       OutputView.printMenuTitle();
       return new Orders(Formatter.splitComma(inputMenu));
     } catch (error) {
-      OutputView.printErrorMessage(error)
+      OutputView.printErrorMessage(error);
       return await this.createOrders(inputDate);
     }
   }
@@ -72,8 +72,7 @@ class App {
   calculateDisCountPrice(orders, dateManager) {
     const discountManager = new DiscountManager(dateManager);
     const dessertMenuCount = orders.getMenuItemCount(DESSERT);
-    const mainMenuCount = orders.getMenuItemCount(MAIN);    
-    
+    const mainMenuCount = orders.getMenuItemCount(MAIN);
     const christmasDiscountPrice = discountManager.calculateChristmasDiscount();
     const weekdayDiscountPrice = discountManager.calculateWeekdayDiscount(dessertMenuCount);
     const weekendDiscountPrice = discountManager.calculateWeekendDiscount(mainMenuCount);
@@ -83,8 +82,8 @@ class App {
       christmasDiscountPrice,
       weekdayDiscountPrice,
       weekendDiscountPrice,
-      specialDayDiscountPrice
-    }
+      specialDayDiscountPrice,
+    };
   }
 
   printDiscountDetails(totalDiscountPrice, totalDiscountDetails) {
@@ -128,7 +127,7 @@ class App {
     OutputView.printBadge(badge);
   }
 
-  hasEventQualification(totalOrderPrice){
+  hasEventQualification(totalOrderPrice) {
     return totalOrderPrice >= 10000;
   }
 }

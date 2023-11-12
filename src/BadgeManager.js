@@ -1,3 +1,5 @@
+import { BADGE_THRESHOLDS, BADGE_TYPES } from "./constant/Badge.js";
+
 class BadgeManager {
   #totalDiscountPrice;
 
@@ -6,16 +8,16 @@ class BadgeManager {
   }
 
   getBadge() {
-    if (this.#totalDiscountPrice >= 20000) {
-      return "산타";
+    if (this.#totalDiscountPrice >= BADGE_THRESHOLDS.SANTA) {
+      return BADGE_TYPES.SANTA;
     }
-    if (this.#totalDiscountPrice >= 10000) {
-      return "트리";
+    if (this.#totalDiscountPrice >= BADGE_THRESHOLDS.TREE) {
+      return BADGE_TYPES.TREE;
     }
-    if (this.#totalDiscountPrice >= 5000) {
-      return "별";
+    if (this.#totalDiscountPrice >= BADGE_THRESHOLDS.STAR) {
+      return BADGE_TYPES.STAR;
     }
-    return "없음";
+    return BADGE_TYPES.NONE;
   }
 }
 

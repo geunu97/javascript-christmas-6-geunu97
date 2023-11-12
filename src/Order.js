@@ -1,4 +1,4 @@
-import { MENU } from "./constant/menu.js";
+import { MENU } from "./constant/Menu.js";
 import OutputView from "./view/OutputView.js";
 import OrderValidator from "./validator/OrderValidator.js";
 import Formatter from "./utils/Formatter.js";

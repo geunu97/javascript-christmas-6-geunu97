@@ -1,3 +1,5 @@
+import { GIFT_MIN_ORDER_PRICE, GIFT_TYPES } from "./constant/Gift.js";
+
 class GiftManager {
   #hasGiftQualification;
 
@@ -6,14 +8,14 @@ class GiftManager {
   }
 
   #hasGift(totalOrderPrice) {
-    return totalOrderPrice >= 120000;
+    return totalOrderPrice >= GIFT_MIN_ORDER_PRICE;
   }
 
   getGift() {
     if (this.#hasGiftQualification) {
-      return "샴페인 1개";
+      return GIFT_TYPES.CHAMPAGNE;
     }
-    return "없음";
+    return GIFT_TYPES.NONE;
   }
 }
 

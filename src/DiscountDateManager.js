@@ -1,3 +1,4 @@
+import EVENT_DATE from "./constant/EventDate.js";
 import Formatter from "./utils/Formatter.js";
 import DateValidator from "./validator/DateValidator.js";
 
@@ -17,7 +18,7 @@ class DiscountDateManager {
   }
 
   #getDayOfWeek() {
-    return new Date(2023, 11, this.#date).getDay();
+    return new Date(EVENT_DATE.YEAR, EVENT_DATE.MONTH - 1, this.#date).getDay();
   }
 
   getProfitDay() {
@@ -25,22 +26,21 @@ class DiscountDateManager {
   }
 
   isChristmasEvent() {
-    return this.#date >= 1 && this.#date <= 25;
+    return EVENT_DATE.CHRISTMAS.includes(this.#date);
   }
 
   isWeekdayEvent() {
     const dayOfWeek = this.#getDayOfWeek();
-    return dayOfWeek >= 0 && dayOfWeek <= 4;
+    return EVENT_DATE.WEEKDAY.includes(dayOfWeek);
   }
 
   isWeekendEvent() {
     const dayOfWeek = this.#getDayOfWeek();
-    return dayOfWeek >= 5 && dayOfWeek <= 6;
+    return EVENT_DATE.WEEKEND.includes(dayOfWeek);
   }
 
   isSpecialDayEvent() {
-    const specialDays = [3, 10, 17, 24, 25, 31];
-    return specialDays.includes(this.#date);
+    return EVENT_DATE.SPECIALDAY.includes(this.#date);
   }
 }
 

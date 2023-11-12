@@ -1,4 +1,4 @@
-import { DRINK, MENU } from "../constant/menu.js";
+import { DRINK, MENU } from "../constant/Menu.js";
 import Formatter from "../utils/Formatter.js";
 import ERROR_MESSAGE from "../constant/ErrorMessage.js";
 
