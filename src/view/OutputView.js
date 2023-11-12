@@ -54,6 +54,10 @@ const OutputView = {
 
   printNothing(){
     Console.print("없음");
+  },
+
+  printErrorMessage(error) {
+    Console.print(error.message);
   }
 };
 

@@ -1,5 +1,5 @@
 import { MENU } from "./constant/menu.js";
-import OutputView from "./utils/OutputView.js";
+import OutputView from "./view/OutputView.js";
 
 class Order {  
   #menu;

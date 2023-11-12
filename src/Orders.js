@@ -1,4 +1,5 @@
 import Order from "./Order.js";
+import Formatter from "./utils/Formatter.js";
 import OrderValidator from "./validator/OrderValidator.js";
 
 class Orders {
@@ -24,7 +25,7 @@ class Orders {
   }
 
   #createOrder(order) {
-    const [menu, count] = order.split("-");
+    const [menu, count] = Formatter.splitDash(order);    
     return new Order(menu, Number(count));
   }
 
