@@ -9,8 +9,8 @@ class DiscountDateManager {
   }
 
   #validate(date) {
-    DateValidator.isNumber(date);    
-    DateValidator.range(date);    
+    DateValidator.validateIsNumber(date);    
+    DateValidator.validateRange(date);    
   }
 
   #getDayOfWeek() {
@@ -37,7 +37,7 @@ class DiscountDateManager {
 
   isSpecialDayEvent() {
     const specialDays = [3, 10, 17, 24, 25, 31];
-    return specialDays.includes(Number(this.#date));
+    return specialDays.includes(this.#date);
   }
 }
 
