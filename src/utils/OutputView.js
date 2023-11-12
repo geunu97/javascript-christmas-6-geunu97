@@ -18,6 +18,11 @@ const OutputView = {
   printMenu(menu, count) {
     Console.print(`${menu} ${count}개`);    
   },
+
+  printTotalOrderPrice(totalOrderPrice) {
+    Console.print("\n<할인 전 총주문 금액>");
+    Console.print(`${totalOrderPrice}원`);    
+  },
 };
 
 export default OutputView;

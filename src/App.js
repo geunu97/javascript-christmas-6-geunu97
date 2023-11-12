@@ -21,6 +21,7 @@ class App {
 
   totalOrderPriceResult(orders) {
     const totalOrderPrice = orders.calculateTotalOrderPrice();
+    OutputView.printTotalOrderPrice(totalOrderPrice);
     return totalOrderPrice;
   }
 }
