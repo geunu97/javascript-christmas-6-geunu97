@@ -15,6 +15,13 @@ class App {
     OutputView.printMenuTitle(); 
 
     const orders = new Orders(inputMenu.split(','));
+
+    const totalOrderPrice = this.totalOrderPriceResult(orders);
+  }
+
+  totalOrderPriceResult(orders) {
+    const totalOrderPrice = orders.calculateTotalOrderPrice();
+    return totalOrderPrice;
   }
 }
 

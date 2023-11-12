@@ -15,6 +15,12 @@ class Orders {
     const [menu, count] = order.split("-");
     return new Order(menu, Number(count));
   }
+
+  calculateTotalOrderPrice() {
+    const totalOrderPrice = this.#items.reduce(
+      (acc, order) => acc + order.getTotalPrice(),0);
+    return totalOrderPrice;
+  }
 }
 
 export default Orders;
