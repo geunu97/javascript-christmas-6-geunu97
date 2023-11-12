@@ -26,8 +26,10 @@ class App {
     const dateManager = new DiscountDateManager(Number(inputDate)); 
     const discountManager = new DiscountManager(dateManager);
 
-    const dessertMenuCount = orders.getMenuItemCount(DESSERT);    
-    discountManager.calculateWeekdayDiscount(dessertMenuCount);  
+    const dessertMenuCount = orders.getMenuItemCount(DESSERT);  
+    const mainMenuCount = orders.getMenuItemCount(MAIN);
+
+    discountManager.calculateWeekdayDiscount(dessertMenuCount);      
   }
 
   totalOrderPriceResult(orders) {
