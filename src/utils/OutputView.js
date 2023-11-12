@@ -42,6 +42,11 @@ const OutputView = {
     Console.print(`${-price}원`);    
   },
 
+  printDiscountedPrice(price) {
+    Console.print("\n<할인 후 예상 결제 금액>");
+    Console.print(`${price}`);    
+  },
+
   printNothing(){
     Console.print("없음");
   }

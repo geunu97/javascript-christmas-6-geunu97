@@ -30,6 +30,8 @@ class App {
     this.printDiscountDetails(totalDiscount, totalBenefitDetailResult.totalDiscountDetails);
 
     OutputView.printTotalBenefitPrice(totalDiscount);
+
+    this.DiscountedPriceResult(totalOrderPrice, totalDiscount, giftDetails)
   }
 
   totalOrderPriceResult(orders) {
@@ -73,6 +75,11 @@ class App {
         OutputView.printDiscountPrice(discountPrice, event);
       }
     });    
+  }
+
+  DiscountedPriceResult(totalOrderPrice, totalDiscount, giftDetails){
+    const discountedPrice = totalOrderPrice - totalDiscount + giftDetails['증정 이벤트'];    
+    OutputView.printDiscountedPrice(discountedPrice);
   }
 }
 
