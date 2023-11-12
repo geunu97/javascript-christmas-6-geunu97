@@ -26,6 +26,11 @@ class DiscountDateManager {
     const dayOfWeek = this.#getDayOfWeek();
     return dayOfWeek >= 5 && dayOfWeek <= 6;
   }
+
+  isSpecialDayEvent() {
+    const specialDays = [3, 10, 17, 24, 25, 31];
+    return specialDays.includes(this.#date);
+  }
 }
 
 export default DiscountDateManager;
