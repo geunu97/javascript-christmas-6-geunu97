@@ -60,7 +60,7 @@ class OrderValidator {
     orderItems.forEach(order => {
       const count = Formatter.splitDash(order)[1];
       
-      if (!count || isNaN(count) || Number(count) < 1) {
+      if (!count || isNaN(count) || Formatter.convertToNumber(count) < 1) {
         throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
       }
     })
@@ -70,7 +70,7 @@ class OrderValidator {
     const totalCount = orderItems.reduce((sum,order) => {
       const count = Formatter.splitDash(order)[1];      
 
-      return sum += Number(count)
+      return sum += Formatter.convertToNumber(count)
     },0)
 
     if (totalCount > 20) {

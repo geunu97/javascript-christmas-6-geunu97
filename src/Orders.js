@@ -26,7 +26,7 @@ class Orders {
 
   #createOrder(order) {
     const [menu, count] = Formatter.splitDash(order);    
-    return new Order(menu, Number(count));
+    return new Order(menu, Formatter.convertToNumber(count));       
   }
 
   calculateTotalOrderPrice() {

@@ -6,6 +6,10 @@ class Formatter {
   static splitDash(value) {
     return value.split('-');
   }
+
+  static convertToNumber(value) {
+    return Number(value);
+  }
 }
 
 export default Formatter;
