@@ -6,14 +6,14 @@ class DiscountDateManager {
 
   constructor(date) {
     this.#validate(date);
-    this.#date = Formatter.convertToNumber(date);    
+    this.#date = Formatter.convertToNumber(date);
   }
 
   #validate(date) {
-    DateValidator.validateBlank(date);    
-    DateValidator.validateIsNumber(date);    
-    DateValidator.validateRange(date);    
-    DateValidator.validateInteger(date);    
+    DateValidator.validateBlank(date);
+    DateValidator.validateIsNumber(date);
+    DateValidator.validateRange(date);
+    DateValidator.validateInteger(date);
   }
 
   #getDayOfWeek() {

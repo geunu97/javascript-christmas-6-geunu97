@@ -1,20 +1,20 @@
 class GiftManager {
-  #hasGiftQualification
+  #hasGiftQualification;
 
   constructor(totalOrderPrice) {
-    this.#hasGiftQualification = this.#hasGift(totalOrderPrice); 
+    this.#hasGiftQualification = this.#hasGift(totalOrderPrice);
   }
 
   #hasGift(totalOrderPrice) {
     return totalOrderPrice >= 120000;
   }
 
-  getGift() {    
+  getGift() {
     if (this.#hasGiftQualification) {
-      return '샴페인 1개'
+      return "샴페인 1개";
     }
-    return '없음';
-  }  
+    return "없음";
+  }
 }
 
 export default GiftManager;
