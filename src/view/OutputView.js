@@ -38,7 +38,7 @@ const OutputView = {
   },
 
   printDiscountPrice(discountPrice, event) {    
-    Console.print(`${event}: ${-discountPrice}원`);    
+    Console.print(`${event}: ${discountPrice}원`);    
   },
 
   printTotalBenefitPriceTitle() {
@@ -46,7 +46,7 @@ const OutputView = {
   },
 
   printTotalBenefitPrice(price) {    
-    Console.print(`${-price}원`);    
+    Console.print(`${price}원`);    
   },
 
   printDiscountedPriceTitle() {

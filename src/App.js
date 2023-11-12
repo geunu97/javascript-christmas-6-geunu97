@@ -20,13 +20,13 @@ class App {
     const totalOrderPrice = this.calculateTotalOrderPrice(orders);
     const giftDetails = this.calculateGiftDetails(totalOrderPrice);
     const totalDiscountDetails = this.calculateTotalBenefit(orders, giftDetails, dateManager);
-    const totalDiscount =  Calculator.sumObjectValues(totalDiscountDetails)    
+    const totalDiscountPrice =  Calculator.sumObjectValues(totalDiscountDetails)    
 
-    this.printDiscountDetails(totalDiscount, totalDiscountDetails);
+    this.printDiscountDetails(totalDiscountPrice, totalDiscountDetails);
     OutputView.printTotalBenefitPriceTitle();
-    OutputView.printTotalBenefitPrice(totalDiscount);
-    this.printDiscountedPrice(totalOrderPrice, totalDiscount, giftDetails);
-    this.printDecemberBadge(totalDiscount);
+    OutputView.printTotalBenefitPrice(-totalDiscountPrice);
+    this.printDiscountedPrice(totalOrderPrice, totalDiscountPrice, giftDetails);
+    this.printDecemberBadge(totalDiscountPrice);
   }
 
   async createDateManager() {
@@ -76,9 +76,9 @@ class App {
     return totalDiscountDetails;    
   }
 
-  printDiscountDetails(totalDiscount, totalDiscountDetails) {
+  printDiscountDetails(totalDiscountPrice, totalDiscountDetails) {
     OutputView.printDiscountTitle();
-    if (!totalDiscount) {
+    if (!totalDiscountPrice) {
       OutputView.printNothing();
       return;
     }
@@ -89,19 +89,19 @@ class App {
   printDiscountDetailsLoop(totalDiscountDetails) {
     Object.entries(totalDiscountDetails).forEach(([event, discountPrice]) => {
       if (discountPrice) {
-        OutputView.printDiscountPrice(discountPrice, event);
+        OutputView.printDiscountPrice(-discountPrice, event);
       }
     });
   }
 
-  printDiscountedPrice(totalOrderPrice, totalDiscount, giftDetails) {
-    const discountedPrice = totalOrderPrice - totalDiscount + giftDetails['증정 이벤트'];
+  printDiscountedPrice(totalOrderPrice, totalDiscountPrice, giftDetails) {
+    const discountedPrice = totalOrderPrice - totalDiscountPrice + giftDetails['증정 이벤트'];
     OutputView.printDiscountedPriceTitle();
     OutputView.printDiscountedPrice(discountedPrice);
   }
 
-  printDecemberBadge(totalDiscount) {
-    const badgeManager = new BadgeManager(totalDiscount);
+  printDecemberBadge(totalDiscountPrice) {
+    const badgeManager = new BadgeManager(totalDiscountPrice);
     const badge = badgeManager.getBadge();
     OutputView.printBadgeTitle();
     OutputView.printBadge(badge);

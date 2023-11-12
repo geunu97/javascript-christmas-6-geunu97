@@ -1,18 +1,18 @@
 class BadgeManager {
-  #totalDiscount;
+  #totalDiscountPrice;
 
-  constructor(totalDiscount) {
-    this.#totalDiscount = totalDiscount;
+  constructor(totalDiscountPrice) {
+    this.#totalDiscountPrice = totalDiscountPrice;
   }
 
   getBadge() {
-    if (this.#totalDiscount >= 20000) {
+    if (this.#totalDiscountPrice >= 20000) {
       return "산타";
     }
-    if (this.#totalDiscount >= 10000) {
+    if (this.#totalDiscountPrice >= 10000) {
       return "트리";
     }
-    if (this.#totalDiscount >= 5000) {
+    if (this.#totalDiscountPrice >= 5000) {
       return "별";
     }
     return "없음";
