@@ -1,5 +1,6 @@
 import { DRINK, MENU } from "../constant/menu.js";
 import Formatter from "../utils/Formatter.js";
+import ERROR_MESSAGE from "../constant/ErrorMessage.js";
 
 class OrderValidator {
   static validateDuplicateMenu(orders) {
@@ -8,9 +9,7 @@ class OrderValidator {
     orders.forEach((order) => {
       const menu = Formatter.splitDash(order)[0];
       if (uniqueMenus.has(menu)) {
-        throw new Error(
-          "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
-        );
+        throw new Error(ERROR_MESSAGE.NOT_VALID_ORDER);
       }
       uniqueMenus.add(menu);
     });
@@ -26,7 +25,7 @@ class OrderValidator {
     }, 0);
 
     if (!count) {
-      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+      throw new Error(ERROR_MESSAGE.NOT_VALID_ORDER);
     }
   }
 
@@ -37,37 +36,37 @@ class OrderValidator {
     }, 0);
 
     if (totalCount > 20) {
-      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+      throw new Error(ERROR_MESSAGE.NOT_VALID_ORDER);
     }
   }
 
   static validateLength(order) {
     if (order.length !== 2) {
-      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+      throw new Error(ERROR_MESSAGE.NOT_VALID_ORDER);
     }
   }
 
   static validateBlankOrder([menu, count]) {
     if (menu.includes(" ") || count.includes(" ")) {
-      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+      throw new Error(ERROR_MESSAGE.NOT_VALID_ORDER);
     }
   }
 
   static validateNotExistMenu([menu, count]) {
     if (!MENU.hasOwnProperty(menu)) {
-      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+      throw new Error(ERROR_MESSAGE.NOT_VALID_ORDER);
     }
   }
 
   static validateRangeCount([menu, count]) {
     if (isNaN(count) || Formatter.convertToNumber(count) < 1) {
-      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+      throw new Error(ERROR_MESSAGE.NOT_VALID_ORDER);
     }
   }
 
   static validateIntegerCount([menu, count]) {
     if (!Number.isInteger(Formatter.convertToNumber(count))) {
-      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+      throw new Error(ERROR_MESSAGE.NOT_VALID_ORDER);
     }
   }
 }

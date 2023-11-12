@@ -1,93 +1,89 @@
 import { Console } from "@woowacourse/mission-utils";
-import Formatter from "../utils/Formatter.js";
+import OUTPUT_MESSAGE from "../constant/OutputMessage.js";
 
 const OutputView = {
   printEventTitle() {
-    Console.print("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+    Console.print(OUTPUT_MESSAGE.EVENT_TITLE);
   },
 
   printPreviewEventTitle(date) {
-    Console.print(
-      `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`
-    );
+    Console.print(OUTPUT_MESSAGE.PREVIEW_EVENT_TITLE(date));
   },
 
   printMenuTitle() {
-    Console.print("\n<주문 메뉴>");
+    Console.print(OUTPUT_MESSAGE.MENU_TITLE);
   },
 
-  printMenu([menu, count]) {
-    Console.print(`${menu} ${count}개`);
+  printMenu(order) {
+    Console.print(OUTPUT_MESSAGE.MENU_ITEM(order));
   },
 
   printTotalOrderPriceTitle() {
-    Console.print("\n<할인 전 총주문 금액>");
+    Console.print(OUTPUT_MESSAGE.TOTAL_ORDER_PRICE_TITLE);
   },
 
   printTotalOrderPrice(price) {
-    Console.print(`${Formatter.splitThousands(price)}원`);
+    Console.print(OUTPUT_MESSAGE.PRICE(price));
   },
 
   printBenefitTitle() {
-    Console.print("\n<증정 메뉴>");
+    Console.print(OUTPUT_MESSAGE.BENEFIT_TITLE);
   },
 
   printBenefit(gift) {
-    Console.print(`${gift}`);
+    Console.print(gift);
   },
 
   printDiscountTitle() {
-    Console.print("\n<혜택 내역>");
+    Console.print(OUTPUT_MESSAGE.DISCOUNT_TITLE);
   },
 
   printChristmasDiscountPrice(price) {
-    Console.print(
-      `크리스마스 디데이 할인: ${Formatter.splitThousands(-price)}원`
-    );
+    Console.print(OUTPUT_MESSAGE.CHRISTMAS_DISCOUNT_PRICE(-price));
   },
 
   printWeekdayDiscountPrice(price) {
-    Console.print(`평일 할인: ${Formatter.splitThousands(-price)}원`);
+    Console.print(OUTPUT_MESSAGE.WEEKDAY_DISCOUNT_PRICE(-price));
   },
 
   printWeekendDiscountPrice(price) {
-    Console.print(`주말 할인: ${Formatter.splitThousands(-price)}원`);
+    Console.print(OUTPUT_MESSAGE.WEEKEND_DISCOUNT_PRICE(-price));
   },
 
   printSpecialDiscountPrice(price) {
-    Console.print(`특별 할인: ${Formatter.splitThousands(-price)}원`);
+    Console.print(OUTPUT_MESSAGE.SPECIAL_DISCOUNT_PRICE(-price));
   },
 
   printGiftDiscountPrice(price) {
-    Console.print(`증정 이벤트': ${Formatter.splitThousands(-price)}원`);
+    Console.print(OUTPUT_MESSAGE.GIFT_DISCOUNT_PRICE(-price));
   },
 
   printTotalBenefitPriceTitle() {
-    Console.print("\n<총혜택 금액>");
+    Console.print(OUTPUT_MESSAGE.TOTAL_BENEFIT_PRICE_TITLE);
   },
 
   printTotalBenefitPrice(price) {
-    Console.print(`${Formatter.splitThousands(-price)}원`);
+    Console.print(OUTPUT_MESSAGE.PRICE(-price));
   },
 
   printDiscountedPriceTitle() {
-    Console.print("\n<할인 후 예상 결제 금액>");
+    Console.print(OUTPUT_MESSAGE.DISCOUNTED_PRICE_TITLE);
   },
 
   printDiscountedPrice(price) {
-    Console.print(`${Formatter.splitThousands(price)}원`);
+    Console.print(OUTPUT_MESSAGE.PRICE(price));
   },
 
   printBadgeTitle() {
-    Console.print("\n<12월 이벤트 배지>");
+    Console.print(OUTPUT_MESSAGE.BADGE_TITLE);
   },
 
   printBadge(badge) {
-    Console.print(`${badge}`);
+    Console.print(badge);
   },
 
   printNothing() {
-    Console.print("없음");
+    Console.print(OUTPUT_MESSAGE.NOTHING);
   },
 
   printErrorMessage(error) {
