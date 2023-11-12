@@ -27,7 +27,7 @@ class App {
 
     const dateManager = new DiscountDateManager(Number(inputDate));
     const totalBenefitDetailResult = this.totalBenefitDetailResult(orders, giftDetails, dateManager);
-    const totalDiscount = totalBenefitDetailResult.totalDiscount;
+    const totalDiscount = this.hasEventQualification(totalOrderPrice) ? totalBenefitDetailResult.totalDiscount : 0;
     this.printDiscountDetails(totalDiscount, totalBenefitDetailResult.totalDiscountDetails);
 
     OutputView.printTotalBenefitPrice(totalDiscount);
@@ -90,6 +90,10 @@ class App {
       }
     });    
   }  
+
+  hasEventQualification(totalOrderPrice){
+    return totalOrderPrice >= 10000;
+  }
 }
 
 export default App;
