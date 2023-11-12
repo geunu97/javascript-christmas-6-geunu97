@@ -21,8 +21,8 @@ const OutputView = {
     Console.print("\n<할인 전 총주문 금액>");    
   },
 
-  printTotalOrderPrice(totalOrderPrice) {    
-    Console.print(`${totalOrderPrice}원`);    
+  printTotalOrderPrice(price) {    
+    Console.print(`${price}원`);    
   },
 
   printBenefitTitle() {
@@ -35,10 +35,26 @@ const OutputView = {
 
   printDiscountTitle() {
     Console.print("\n<혜택 내역>");
+  },  
+
+  printChristmasDiscountPrice(price) {    
+    Console.print(`크리스마스 디데이 할인: ${price}원`);    
   },
 
-  printDiscountPrice(discountPrice, event) {    
-    Console.print(`${event}: ${discountPrice}원`);    
+  printWeekdayDiscountPrice(price) {    
+    Console.print(`평일 할인: ${price}원`);    
+  },
+
+  printWeekendDiscountPrice(price) {    
+    Console.print(`주말 할인: ${price}원`);    
+  },
+
+  printSpecialDiscountPrice(price) {    
+    Console.print(`특별 할인: ${price}원`);    
+  },
+
+  printGiftDiscountPrice(price) {    
+    Console.print(`증정 이벤트': ${price}원`);    
   },
 
   printTotalBenefitPriceTitle() {
@@ -54,7 +70,7 @@ const OutputView = {
   },
 
   printDiscountedPrice(price) {    
-    Console.print(`${price}`);    
+    Console.print(`${price}원`);    
   },
 
   printBadgeTitle() {

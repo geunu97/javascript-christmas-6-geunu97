@@ -1,4 +1,5 @@
 import { DESSERT, MAIN } from "./constant/menu.js";
+import GIFT from "./constant/gift.js";
 import InputView from "./view/InputView.js";
 import OutputView from "./view/OutputView.js";
 import Orders from "./Orders.js";
@@ -18,14 +19,15 @@ class App {
     const { dateManager, inputDate } = await this.createDateManager();
     const orders = await this.createOrders(inputDate);
     const totalOrderPrice = this.calculateTotalOrderPrice(orders);
-    const giftDetails = this.calculateGiftDetails(totalOrderPrice);
-    const totalDiscountDetails = this.calculateTotalBenefit(orders, giftDetails, dateManager);
+    const gift = this.calculateGift(totalOrderPrice);
+    const discountPrice = this.calculateDisCountPrice(orders, dateManager)
+    const totalDiscountDetails = { ...discountPrice, giftPrice: GIFT[gift] }
     const totalDiscountPrice =  Calculator.sumObjectValues(totalDiscountDetails)    
 
     this.printDiscountDetails(totalDiscountPrice, totalDiscountDetails);
     OutputView.printTotalBenefitPriceTitle();
     OutputView.printTotalBenefitPrice(-totalDiscountPrice);
-    this.printDiscountedPrice(totalOrderPrice, totalDiscountPrice, giftDetails);
+    this.printDiscountedPrice(totalOrderPrice, totalDiscountPrice, GIFT[gift]);
     this.printDecemberBadge(totalDiscountPrice);
   }
 
@@ -59,21 +61,30 @@ class App {
     return totalOrderPrice;
   }
 
-  calculateGiftDetails(totalOrderPrice) {
+  calculateGift(totalOrderPrice) {
     const giftManager = new GiftManager(totalOrderPrice);
     const gift = giftManager.getGift();
     OutputView.printBenefitTitle();
     OutputView.printBenefit(gift);
-    return giftManager.getGiftDetails();
+    return gift;
   }
 
-  calculateTotalBenefit(orders, giftDetails, dateManager) {
+  calculateDisCountPrice(orders, dateManager) {
     const discountManager = new DiscountManager(dateManager);
     const dessertMenuCount = orders.getMenuItemCount(DESSERT);
-    const mainMenuCount = orders.getMenuItemCount(MAIN);
-    const discountDetails = discountManager.discountDetails(dessertMenuCount, mainMenuCount);
-    const totalDiscountDetails = { ...discountDetails, ...giftDetails };    
-    return totalDiscountDetails;    
+    const mainMenuCount = orders.getMenuItemCount(MAIN);    
+    
+    const christmasDiscountPrice = discountManager.calculateChristmasDiscount();
+    const weekdayDiscountPrice = discountManager.calculateWeekdayDiscount(dessertMenuCount);
+    const weekendDiscountPrice = discountManager.calculateWeekendDiscount(mainMenuCount);
+    const specialDayDiscountPrice = discountManager.calculateSpecialDiscount();
+
+    return {
+      christmasDiscountPrice,
+      weekdayDiscountPrice,
+      weekendDiscountPrice,
+      specialDayDiscountPrice
+    }
   }
 
   printDiscountDetails(totalDiscountPrice, totalDiscountDetails) {
@@ -87,15 +98,25 @@ class App {
   }
 
   printDiscountDetailsLoop(totalDiscountDetails) {
-    Object.entries(totalDiscountDetails).forEach(([event, discountPrice]) => {
-      if (discountPrice) {
-        OutputView.printDiscountPrice(-discountPrice, event);
-      }
-    });
+    if (totalDiscountDetails.christmasDiscountPrice) {
+      OutputView.printChristmasDiscountPrice(-totalDiscountDetails.christmasDiscountPrice);
+    }
+    if (totalDiscountDetails.weekdayDiscountPrice) {
+      OutputView.printWeekdayDiscountPrice(-totalDiscountDetails.weekdayDiscountPrice);
+    }
+    if (totalDiscountDetails.weekendDiscountPrice) {
+      OutputView.printWeekendDiscountPrice(-totalDiscountDetails.weekendDiscountPrice);
+    }
+    if (totalDiscountDetails.specialDayDiscountPrice) {
+      OutputView.printSpecialDiscountPrice(-totalDiscountDetails.specialDayDiscountPrice);
+    }
+    if (totalDiscountDetails.giftPrice) {
+      OutputView.printGiftDiscountPrice(-totalDiscountDetails.giftPrice);
+    }
   }
 
-  printDiscountedPrice(totalOrderPrice, totalDiscountPrice, giftDetails) {
-    const discountedPrice = totalOrderPrice - totalDiscountPrice + giftDetails['증정 이벤트'];
+  printDiscountedPrice(totalOrderPrice, totalDiscountPrice, giftPrice) {
+    const discountedPrice = totalOrderPrice - totalDiscountPrice + giftPrice;
     OutputView.printDiscountedPriceTitle();
     OutputView.printDiscountedPrice(discountedPrice);
   }
