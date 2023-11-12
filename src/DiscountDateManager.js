@@ -21,6 +21,11 @@ class DiscountDateManager {
     const dayOfWeek = this.#getDayOfWeek();
     return dayOfWeek >= 0 && dayOfWeek <= 4;
   }
+
+  isWeekendEvent() {
+    const dayOfWeek = this.#getDayOfWeek();
+    return dayOfWeek >= 5 && dayOfWeek <= 6;
+  }
 }
 
 export default DiscountDateManager;
