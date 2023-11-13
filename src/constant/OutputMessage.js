@@ -1,6 +1,6 @@
 import Formatter from "../utils/Formatter.js";
 
-const OUTPUT_MESSAGE = {
+const OUTPUT_MESSAGE = Object.freeze({
   EVENT_TITLE: "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.",
   PREVIEW_EVENT_TITLE: (date) => `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
   MENU_TITLE: "\n<주문 메뉴>",
@@ -19,6 +19,6 @@ const OUTPUT_MESSAGE = {
   PRICE: (price) => `${Formatter.splitThousands(price)}원`,
   ERROR_MESSAGE: (error) => error.message,
   NOTHING: "없음",
-};
+});
 
 export default OUTPUT_MESSAGE;
